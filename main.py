@@ -1,6 +1,5 @@
 import streamlit as st
 from enums import *
-from dotenv import load_dotenv
 from utils import *
 from ChatPage import display as chat_display
 from ConfigPage import display as config_display
@@ -57,7 +56,6 @@ st.sidebar.title("Page")
 page_options = ["Test Page", "Config Page"]
 selected_page = st.sidebar.selectbox("Select a Page", page_options)
 
-load_dotenv()
 init_session_state()
 
 if selected_page == "Test Page":
