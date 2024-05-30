@@ -1,6 +1,5 @@
 from typing import Dict, Any
 from openai import OpenAI
-from anthropic import Anthropic
 import random
 import re
 
@@ -46,13 +45,13 @@ class Caller:
                     messages=[{"role": "system", "content": system_prompt}] + dialouge_history.get_parameter_history(),
                     **hyperparameters
                 ).choices[0].message.content
-        elif isinstance(self.api_caller_object, Anthropic):
-            return self.api_caller_object.chat.completions.create(
-                model=self.model_type,
-                system=system_prompt,
-                messages=dialouge_history.get_parameter_history(),
-                **hyperparameters
-            ).choices[0].message.content
+        # elif isinstance(self.api_caller_object, Anthropic):
+        #     return self.api_caller_object.chat.completions.create(
+        #         model=self.model_type,
+        #         system=system_prompt,
+        #         messages=dialouge_history.get_parameter_history(),
+        #         **hyperparameters
+        #     ).choices[0].message.content
         else:
             raise ValueError("Invalid model type")
 
