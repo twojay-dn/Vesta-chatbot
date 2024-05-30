@@ -2,7 +2,6 @@ from typing import Dict, Any
 from openai import OpenAI
 from Classes import GeussingGame_field, Caller, Dialogue, Heejin_GeussingGame_field
 from enums import GameType, ModelType, TurnLimit
-import param
 import os
         
 def create_guessinggame_agent(
@@ -35,7 +34,7 @@ def create_caller(model_type : ModelType):
     sliced = model_type.value[:3]
     match sliced:
         case "gpt":
-            api_caller = OpenAI(api_key=os.getenv("OPENAI_API_KEY") or param.api_key)
+            api_caller = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
             return Caller(api_caller, model_type.value)
         case _:
             raise ValueError("Invalid model type")
